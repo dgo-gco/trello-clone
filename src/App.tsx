@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Card } from './components/Card';
+import Column from './components/Column';
+import { AppContainer } from './style';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <Column text="To Do">
+      <Card text="Learn TS" />
+      </Column>
+      <Column text="In Progress">
+      <Card text="Learn JS" />
+      </Column>
+      <Column text="Done">
+      <Card text="Start using static " />
+      </Column>
+    </AppContainer>
   );
 }
 
