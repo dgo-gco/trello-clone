@@ -1,22 +1,20 @@
-import React from 'react';
 import './App.css';
-import { Card } from './components/Card';
-import Column from './components/Column';
 import { AppContainer } from './style';
+import { Column } from './components/Column';
+import { Card } from './components/Card';
+import { AddNewItem } from './components/AddNewItem';
+import { useAppState } from './AppStateContext';
+import { text } from 'stream/consumers';
 
 function App() {
+  const {state, dispatch} = useAppState()
   return (
-    <AppContainer>
-      <Column text="To Do">
-      <Card text="Learn TS" />
-      </Column>
-      <Column text="In Progress">
-      <Card text="Learn JS" />
-      </Column>
-      <Column text="Done">
-      <Card text="Start using static " />
-      </Column>
-    </AppContainer>
+  <AppContainer>
+    {state.lists.map((list,i) =>(
+      <Column id={list.id} text={list.text} key={list.id} index={i} />
+    ))}
+    <AddNewItem toggleButtonText='+ Add another list' onAdd={text => dispatch({type: 'ADD_LIST', payload: text})}/>
+  </AppContainer>
   );
 }
 
